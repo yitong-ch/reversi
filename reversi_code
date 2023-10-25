@@ -1,0 +1,60 @@
+#include <stdio.h>
+//#define ChessDemand(x, y) (x = 0 &&x <= 7 &&y = 0 && y <= 7)
+#define EMPTY 0 //定義用大寫避免與變數混淆
+#define BLACK 1
+#define WHITE 2
+
+int ChessBoard[8][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 2, 1, 0, 0, 0},
+                        {0, 0, 0, 1, 2, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}};
+
+// check the color of this chess
+int CheckColor(x, y) {
+  int color;
+  switch (ChessBoard[x][y]) { // check color
+  case EMPTY:
+    color = EMPTY;
+    printf("this chess is empty.\n");
+    break;
+  case BLACK:
+    color = BLACK;
+    printf("this chess is black.\n");
+    break;
+  case WHITE:
+    color = WHITE;
+    printf("this chess is white.\n");
+    break;
+  }
+  return 0;
+}
+
+int CheckEast(x, y) { // need value in empty brackets?
+  int dx = 1, itself;
+  itself = ChessBoard[x][y];
+  if (itself != EMPTY) { //maybe you can put chess nearby
+    while (ChessBoard[x + dx][y] != EMPTY) 
+      dx += 1;
+      if (ChessBoard[x+dx][y] == itself){
+        printf("(%d, %d)\n", x+dx, y);
+        break;
+      }
+    }
+  }
+  return 0;
+}
+
+
+int main() {
+  int x, y;
+  scanf("%d%d", x, y);
+  CheckColor(x, y);
+  CheckEast(x, y);
+
+   
+  return 0;
+  }
+
+
+
+
