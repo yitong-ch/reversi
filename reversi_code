@@ -4,13 +4,17 @@
 #define BLACK 1
 #define WHITE 2
 
-int ChessBoard[8][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
-                        {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 2, 1, 0, 0, 0},
-                        {0, 0, 0, 1, 2, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
-                        {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}};
+int ChessBoard[8][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, 
+                        {0, 0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0}, 
+                        {0, 0, 0, 2, 1, 0, 0, 0},
+                        {0, 0, 0, 1, 2, 0, 0, 0},      
+                        {0, 0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0},     
+                        {0, 0, 0, 0, 0, 0, 0, 0}};
 
 // check the color of this chess
-int CheckColor(x, y) {
+void CheckColor(x, y) {
   int color;
   switch (ChessBoard[x][y]) { // check color
   case EMPTY:
@@ -26,35 +30,111 @@ int CheckColor(x, y) {
     printf("this chess is white.\n");
     break;
   }
-  return 0;
 }
 
-int CheckEast(x, y) { // need value in empty brackets?
-  int dx = 1, itself;
-  itself = ChessBoard[x][y];
-  if (itself != EMPTY) { //maybe you can put chess nearby
-    while (ChessBoard[x + dx][y] != EMPTY) 
-      dx += 1;
-      if (ChessBoard[x+dx][y] == itself){
+void CheckDir(x, y){
+  int mine = ChessBoard[x][y];
+  int opponent = 3 - ChessBoard[x][y];
+  int dx = 1, dy =1;
+  if (mine != EMPTY){ 
+  
+  //check 左上  
+    while (ChessBoard[x-dx][y-dy] == opponent){
+      dx++;
+      dy++;
+      if (ChessBoard[x-dx][y-dy] == EMPTY){
+        printf("(%d, %d)\n", x-dx, y-dy);
+        break;
+      }
+    }
+    dx = 1; 
+    dy = 1;
+    
+    //check 右上
+    while (ChessBoard[x+dx][y-dy] == opponent){
+      dx++;
+      dy++;
+      if (ChessBoard[x+dx][y-dy] == EMPTY){
+        printf("(%d, %d)\n", x+dx, y-dy);
+        break;
+      }
+    }
+    dx = 1; 
+    dy = 1;
+    
+    //check 右下
+    while (ChessBoard[x+dx][y+dy] == opponent){
+      dx++;
+      dy++;
+      if (ChessBoard[x+dx][y+dy] == EMPTY){
+        printf("(%d, %d)\n", x+dx, y+dy);
+        break;
+      }
+    }  
+    dx = 1; 
+    dy = 1;
+    
+    //check 上方
+    while (ChessBoard[x][y-dy] == opponent){
+      dy++;
+      if (ChessBoard[x][y-dy] == EMPTY){
+        printf("(%d, %d)\n", x, y-dy);
+        break;
+      }
+    }
+    dx = 1; 
+    dy = 1;
+    
+    //check 下方
+    while (ChessBoard[x][y+dy] == opponent){
+      dy++;
+      if (ChessBoard[x][y+dy] == EMPTY){
+        printf("(%d, %d)\n", x, y+dy);
+        break;
+      }
+    }
+    dx = 1; 
+    dy = 1;
+  
+    //check 左
+    while (ChessBoard[x-dx][y] == opponent){
+      dx++;
+      if (ChessBoard[x-dx][y] == EMPTY){
+        printf("(%d, %d)\n", x-dx, y);
+        break;
+      }
+    }
+    dx = 1; 
+    dy = 1;
+    
+    //check 右
+    while (ChessBoard[x+dx][y] == opponent){
+      dx++;
+      if (ChessBoard[x+dx][y] == EMPTY){
         printf("(%d, %d)\n", x+dx, y);
         break;
       }
     }
-  }
-  return 0;
+    dx = 1; 
+    dy = 1; //it can't be reset in while loop
+    
+  } //the end of if
+  else printf("you put a blank chess.\n");
 }
 
 
+
+//main code
 int main() {
   int x, y;
-  scanf("%d%d", x, y);
+  scanf("%d%d", &x, &y);
   CheckColor(x, y);
-  CheckEast(x, y);
+  CheckDir(x, y);
+  
 
-   
+
+
   return 0;
-  }
+}
 
-
-
-
+// end of main
