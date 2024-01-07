@@ -68,3 +68,146 @@ int main() {
     CheckDir(x, y);
     return 0;
 }
+
+
+//below are the record of trial and error
+/*void CheckDir(int x, int y){
+    int itself = ChessBoard[x][y];
+    int opponent = 3 - ChessBoard[x][y];
+    for(int i = 0; i<8; i++){
+        x += dx[i];
+        y += dy[i];
+        if (ChessBoard[x][y] == itself){
+            for(int i = 0; i<8; i++){
+                x += dx[i];
+                y += dy[i];
+                while (ChessBoard[x][y] == opponent && x<=7 && x>=0 && y<=7 && y>=0){
+                    x += dx[i];
+                    y += dy[i];
+                    if (ChessBoard[x][y] == EMPTY){
+                        printf("(%d, %d)", x, y);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}*/
+
+
+/*void CheckDir(x, y){
+  int mine = ChessBoard[x][y];
+  int opponent = 3 - ChessBoard[x][y];
+  int dx = 1, dy =1;
+  if (mine != EMPTY){
+
+  //check 左上
+    while (ChessBoard[x-dx][y-dy] == opponent){
+      dx++;
+      dy++;
+      if (ChessBoard[x-dx][y-dy] == EMPTY){
+        printf("(%d, %d)\n", x-dx, y-dy);
+        break;
+      }
+    }
+    dx = 1;
+    dy = 1;
+
+    //check 右上
+    while (ChessBoard[x+dx][y-dy] == opponent){
+      dx++;
+      dy++;
+      if (ChessBoard[x+dx][y-dy] == EMPTY){
+        printf("(%d, %d)\n", x+dx, y-dy);
+        break;
+      }
+    }
+    dx = 1;
+    dy = 1;
+
+    //check 右下
+    while (ChessBoard[x+dx][y+dy] == opponent){
+      dx += 1;
+      dy += 1;
+      if (ChessBoard[x+dx][y+dy] == EMPTY){
+        printf("(%d, %d)\n", x+dx, y+dy);
+        break;
+      }
+    }
+    dx = 1;
+    dy = 1;
+
+    //check 上方
+        while (ChessBoard[x][y-dy] == opponent){
+      dy++;
+      if (ChessBoard[x][y-dy] == EMPTY){
+        printf("(%d, %d)\n", x, y-dy);
+        break;
+      }
+    }
+    dx = 1;
+    dy = 1;
+
+    //check 下方
+    while (ChessBoard[x][y+dy] == opponent){
+      dy++;
+      if (ChessBoard[x][y+dy] == EMPTY){
+        printf("(%d, %d)\n", x, y+dy);
+        break;
+      }
+    }
+    dx = 1;
+    dy = 1;
+
+    //check 左
+    while (ChessBoard[x-dx][y] == opponent){
+      dx++;
+      if (ChessBoard[x-dx][y] == EMPTY){
+        printf("(%d, %d)\n", x-dx, y);
+        break;
+      }
+    }
+    dx = 1;
+    dy = 1;
+
+    //check 右
+    while (ChessBoard[x+dx][y] == opponent){
+      dx++;
+      if (ChessBoard[x+dx][y] == EMPTY){
+        printf("(%d, %d)\n", x+dx, y);
+        break;
+      }
+    }
+    dx = 1;
+    dy = 1; //it can't be reset in while loop
+
+  } //the end of if
+    else printf("you put a blank chess.\n");
+
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
